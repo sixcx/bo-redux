@@ -1,10 +1,6 @@
 //combineReducers
-const combineReducers = (reducers) => (state = {}, action) => {
-  let currentState = {};
-  
-  for (let key in reducers) {
+export default combineReducers = reducers => (state = {}, action) => 
+  Object.keys(reducers).reduce((currentState, key) => {
     currentState[key] = reducers[key](state[key], action);
-  }
-
-  return currentState;
-}
+    return currentState;
+}, {});

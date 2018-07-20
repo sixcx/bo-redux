@@ -1,5 +1,9 @@
 //store文件
-function createStore(reducers) {
+export default function createStore(reducers, hancer) {
+  if (typeof hancer !== 'undefined') {
+    return hancer(createStore)(reducers)
+  }
+
   let state = null;
   let listeners = [];
 
@@ -16,5 +20,5 @@ function createStore(reducers) {
 
   dispatch({});
 
-  return { getState, dispatch, subscribe }
+  return { getState, dispatch, subscribe };
 }
